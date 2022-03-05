@@ -1,0 +1,13 @@
+Technique
+---------
+* OpenMP acceleration
+* CMake build
+
+Simulation
+----------
+* Wall function
+* Passive scalar transport equation 
+* Complex terrian 
+* Example cases
+
+...

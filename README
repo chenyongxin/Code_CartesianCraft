@@ -1,0 +1,14 @@
+Code_CartesianCraft
+===================
+
+Code_CartesianCraft (CCC) is an incompressible turbulent flow solver, which is 
+used in my turbulent boundary layer simulations. The name CCC sounds stupid, 
+but is easy to remember (I hope). 
+
+CCC depends on HYPRE for the parallel Poisson solver and optionally depends on
+HDF5 for parallel IO. One needs to enable the ``parallel'' feature when 
+compiling HYPRE and HDF5. The paths to the header files and libraries should 
+be appended to the environment variables CPATH and LIBRARY_PATH respectively. 
+Then CCC can be compiled by ``make -j'' with the provided Makefile.
+
+Contact me at chen_yongxin at outlook dot com for questions and enquiry.
