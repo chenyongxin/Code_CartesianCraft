@@ -227,6 +227,7 @@ namespace Discretisation{
 
   double GammaScheme(double uj, double vm1, double v, double vp1, double vp2){
     double u, c, d, phic, r;   // upper-stream, current cell, down-stream
+    double result;
     if(uj >= 0){
       c = v;
       u = vm1;                 // v - 1
@@ -244,15 +245,16 @@ namespace Discretisation{
       phic = (c-u)/(d-u);
     }
     if( (phic <= 0) || (phic >= 1) ){
-      return c;         // upwind scheme
+      result = c;         // upwind scheme
     } 
     if( (phic >= BETA) && (phic < 1) ){
-      return 0.5*(c+d); // central difference scheme
+      result = 0.5*(c+d); // central difference scheme
     }
     if( (phic > 0) && (phic < BETA) ){
       double r = phic/BETA;
-      return (1-0.5*r)*c+0.5*r*d;  // blended
+      result = (1-0.5*r)*c+0.5*r*d;  // blended
     }
+    return result;
   }
 
 } // end namespace Discretisation

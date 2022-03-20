@@ -15,7 +15,7 @@ INC_DIR := include
 INCLUDE := -I$(INC_DIR)
 
 # Flags and libraries
-CXXFLAGS := -w -std=c++11 -O3
+CXXFLAGS := -std=c++11 -O3
 LDFLAGS  := -lHYPRE 
 
 ifneq ($(use_hdf), 0)

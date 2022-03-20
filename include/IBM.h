@@ -77,4 +77,4 @@ void distance_normal_aligned_cuboids(int n, const Grid &grid, const Array2d &xc,
 void distance_normal_aligned_cuboid(const Vec3d &pt, const Vec3d &xc, const Vec3d &dh,
                                     double &distance, Vec3d &normal);
 
-#endif IBM_H
+#endif // IBM_H
