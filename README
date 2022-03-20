@@ -9,6 +9,7 @@ CCC depends on HYPRE for the parallel Poisson solver and optionally depends on
 HDF5 for parallel IO. One needs to enable the ``parallel'' feature when 
 compiling HYPRE and HDF5. The paths to the header files and libraries should 
 be appended to the environment variables CPATH and LIBRARY_PATH respectively. 
-Then CCC can be compiled by ``make -j'' with the provided Makefile.
+This is also applicable to build CCC with CMake. Then CCC can be compiled by 
+``make -j'' with the provided Makefile or the CMake-generated Makefile.
 
 Contact me at chen_yongxin at outlook dot com for questions and enquiry.
