@@ -1,0 +1,2 @@
+A test case of flow past an array of 2-by-2 wall-mounted cubes. Run with 
+mpirun -n 4 CCC

@@ -1,0 +1,50 @@
+$grid$
+0 1 0.0 8.0 0.0625
+
+$grid$
+1 1 0.0 8.0 0.0625
+
+$grid$
+2 1 0.0 3.5 0.0625
+
+$mpi$
+1 2 2
+
+$case$
+4
+
+$nu$
+0.000002
+
+$bodyforce$
+0 0.28571429
+
+$uref$
+10
+
+$ibmtype$
+1
+
+$totaltime$
+1.001
+
+$adaptive$
+1
+
+$cfl$
+0.5
+
+$stat_time$
+0.
+
+$visu_time$
+0.
+
+$visu_dt$
+0.2
+
+$restart$
+0
+
+$restatistics$
+0
