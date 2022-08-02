@@ -50,10 +50,13 @@ class Controller{
     double _utau = -1.;          // u_\tau
     double _z0   = -1.;          // z0
     double _uref =  1.;          // reference velocity
-
+    double _Cd   =  0.;          // fluid drag coefficient, resulting from the unresolved canopy element
+    double _cdheight = 0.;       // canopy height, under where the drag is applied 
+      
     // Cases
     int _case    = -1;           // case for ic and bc types 
     int _ibmtype =  0;           // IBM roughness type
+    int _dragmodel = 0;          // Use drag model for the unresolved elements. 0 for off and 1 for on
 
     // Body force
     Vec3d _bforce;
@@ -177,6 +180,12 @@ class Controller{
     // Get IBM roughness type
     int get_ibmtype() const {return _ibmtype; }
 
+    // Set drag model for unresolved elements, switch on
+    void set_dragmodel(const int x) {_dragmodel = x;}
+
+    // Get drag model status
+    int get_dragmodel() const {return _dragmodel;}
+
     // Increment timing
     void increment_time () {   _time  += _dt;} // increment simulation time by adding time step
     void increment_step () {   _step  +=   1;} // increment simulation step by adding 1
@@ -213,6 +222,12 @@ class Controller{
     void   set_z0   (const double x)                   {_z0      = x;}
     double z0       ()                           const {return   _z0;}
 
+    void   set_Cd   (const double x)                   {_Cd      = x;}
+    double Cd       ()                           const {return _Cd;  }
+
+    void   set_cdheight(const double x)                {_cdheight = x;}
+    double cdheight ()                           const {return _cdheight;}
+    
     // Set and get turbulence inflow generation.
     void set_turbulent_inflow_generation(const bool x) {_turbulent_inflow_generation = x;}
     bool turbulent_inflow_generation() const {return _turbulent_inflow_generation;}

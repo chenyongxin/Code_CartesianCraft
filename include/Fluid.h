@@ -64,6 +64,7 @@ class Fluid{
     VectorFieldd uij[3];            // staggered velocity gradient tensor
     VectorFieldd uij_cen[3];        // velocity gradient tensor in cell-centre
     Fieldd       cfl;               // compute local cfl number
+    VectorFieldd D;                 // drag force due to unresolved element
 
     // Variables		          
     double       nu;                // kinematic viscosity

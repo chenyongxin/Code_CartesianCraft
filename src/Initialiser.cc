@@ -131,6 +131,21 @@ void Initialiser::read_file(const MyMPI &mympi, Controller &controller, Grid &gr
         list >> type;
         controller.set_ibmtype(type);
       }
+      else if(keyword == "dragmodel"){
+        int x;
+        list >> x;
+        controller.set_dragmodel(x);
+      }
+      else if(keyword == "cd"){
+        double x;
+        list >> x;
+        controller.set_Cd(x);
+      }
+      else if(keyword == "cdheight"){
+        double x;
+        list >> x;
+        controller.set_cdheight(x);
+      }
       else if(keyword == "visu_dt"){
         double dt;
         list >> dt;

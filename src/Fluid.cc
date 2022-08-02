@@ -32,6 +32,9 @@ void Fluid::init(){
   }
   div.allocate(grid.n());
   cfl.allocate(grid.n());
+  if(controller.get_dragmodel() != 0){
+    D.allocate(grid.n());
+  }
 
   // Assign variables
   nu = controller.nu();
@@ -72,8 +75,20 @@ void Fluid::updateAB(){
   }
 
   Discretisation::conv_diff(r, u, grid, nu, ed, uij);
+  
+  // Get drag force term
+  if(controller.get_dragmodel() != 0){
+    Discretisation::get_dragforce(u, D, grid, controller.Cd(), controller.cdheight());
+  }
+  
   if(controller.step() == 0) {h = r;} // It will reduce the init step to Euler
   Discretisation::AB(u, r, h, controller.bforce(), controller.dt());
+  
+  // Add additional terms
+  if(controller.get_dragmodel() != 0){
+    Discretisation::add_vectorfields(u, D);
+  }
+
   h = r;                              // Update history term
   updateUP(u);
   

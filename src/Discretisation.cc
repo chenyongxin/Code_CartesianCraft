@@ -225,6 +225,57 @@ namespace Discretisation{
     }
   }
 
+  // Compute drag force D_i = -Cd u_i V, where V=sqrt(u_i u_i)
+  void get_dragforce(const VectorFieldd &u, VectorFieldd &D, const Grid &grid,  const double Cd, const double h){
+
+    int is = u.is(), js = u.js(), ks = u.ks();
+    int ie = u.ie(), je = u.je(), ke = u.ke();
+    
+    for(int d=0; d<3; d++){
+      for(int k=ks; k<ke; k++){
+        
+        // Get current height
+        double height;
+        if(d == 2){
+          height = grid.x(2, k+1);
+        }
+        else{
+          height = grid.x(2, k) + 0.5*grid.dx(2, k);
+        }
+
+        // Below drag canopy height
+        if(height <= h){
+          for(int j=js; j<je; j++){
+            for(int i=is; i<ie; i++){
+              double ui = 0.5*(u[0](i, j, k)+u[0](i+1, j, k));
+              double vi = 0.5*(u[1](i, j, k)+u[1](i, j+1, k));
+              double wi = 0.5*(u[2](i, j, k)+u[2](i, j, k+1));
+              D[d](i,j,k) = -Cd*u[d](i,j,k)*sqrt(ui*ui+vi*vi+wi*wi);
+            } // i loop
+          } // j loop
+        } // height <= h
+      } // k loop 
+    } // direction loop
+
+  }
+
+  // u = u + other
+  void add_vectorfields(VectorFieldd &u, const VectorFieldd &other){
+    int is = u.is(), js = u.js(), ks = u.ks();
+    int ie = u.ie(), je = u.je(), ke = u.ke();
+    for(int d=0; d<3; d++){
+      for(int k=ks; k<ke; k++){
+        for(int j=js; j<je; j++){
+          for(int i=is; i<ie; i++){
+            u[d](i,j,k) += other[d](i,j,k);  
+          }
+        }
+      }  
+    }
+  }
+  
+
+
   double GammaScheme(double uj, double vm1, double v, double vp1, double vp2){
     double u, c, d, phic, r;   // upper-stream, current cell, down-stream
     double result;

@@ -6,6 +6,7 @@
 #define DISCRETISATION_H
 
 #include <iostream>
+#include <cmath>
 
 #include "Vec.h"
 #include "Grid.h"
@@ -30,7 +31,12 @@ namespace Discretisation{
   void conv_diff(VectorFieldd &a, const VectorFieldd &v, const Grid &grid, const double nu, const Fieldd &ed, const VectorFieldd *uij);
 
   // Adam-Bashforth integration: v = v + (1.5r - 0.5h + bforce)*dt
-  void AB(VectorFieldd &v, const VectorFieldd &r, const VectorFieldd &h, const Vec3d &bforce, const double dt);
+  void AB(VectorFieldd &u, const VectorFieldd &r, const VectorFieldd &h, const Vec3d &bforce, const double dt);
 
+  // Get drag force
+  void get_dragforce(const VectorFieldd &v, VectorFieldd &D, const Grid &grid, const double Cd, const double h);
+
+  // Add additional terms
+  void add_vectorfields(VectorFieldd &u, const VectorFieldd &other);
 };
 #endif // DISCRETISATION
